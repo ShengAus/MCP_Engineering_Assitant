@@ -34,6 +34,19 @@ For the first demo, the host is deterministic so the workflow is reproducible. A
 
 The LLM host is intentionally narrow. It should use tools for retrieval, calculation, and reporting, and it should not invent standards or perform safety-critical calculations itself.
 
+## Evaluation Methodology
+
+`evals/llm_eval.py` is an offline evaluation harness for the optional LLM host. It uses scripted model responses and in-process tool adapters so the runtime controls can be tested without an API key.
+
+The current eval set covers:
+
+- retrieval quality for source assumptions and safety limitations
+- unsupported-answer refusal by checking that host-controlled report assembly removes invented compliance claims
+- tool-call correctness for the expected retrieval, calculation, and report-generation sequence
+- prompt regression checks for required safety and tool-use instructions
+
+These evals complement unit tests by checking agent behaviour at the orchestration boundary, where prompt instructions, tool calls, evidence, and deterministic runtime controls meet.
+
 ## Server Boundaries
 
 - `docs_server`: searches and retrieves local Markdown engineering notes.

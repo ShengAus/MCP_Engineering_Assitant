@@ -52,6 +52,19 @@ python examples/run_llm_agent.py
 
 This path requires an API key. The deterministic MCP demo remains the guaranteed offline demo.
 
+## LLM Evaluation Harness
+
+The `evals/llm_eval.py` harness provides offline checks for the optional LLM host:
+
+- retrieval quality for formula, threshold, and safety-limit evidence
+- unsupported compliance-claim suppression through host-controlled report assembly
+- tool-call correctness across retrieval, calculation, and report generation
+- prompt regression checks for core safety and tool-use instructions
+
+```bash
+python evals/llm_eval.py
+```
+
 ## Run Tests
 
 ```bash
